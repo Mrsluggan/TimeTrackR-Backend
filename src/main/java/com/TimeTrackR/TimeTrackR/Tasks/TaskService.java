@@ -2,6 +2,7 @@ package com.TimeTrackR.TimeTrackR.Tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.MongoOperations;
@@ -10,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskService {
 
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
     private final MongoOperations mongoOperations;
 
@@ -42,7 +42,7 @@ public class TaskService {
 
         task.setIsActive(true);
         task.setStartDate(now);
-        
+
         return mongoOperations.save(task);
     }
 
@@ -52,12 +52,22 @@ public class TaskService {
 
         task.setIsActive(false);
         task.setEndDate(now);
+        System.out.println(task.getStartDate() + " " + task.getEndDate());
+        countHours(task.getStartDate(), task.getEndDate());
         return mongoOperations.save(task);
     }
 
     public Tasks editTask(Tasks tasks, String id) {
 
         return tasks;
+    }
+
+    public LocalDateTime countHours(LocalDateTime start, LocalDateTime stop) {
+
+        long seconds = ChronoUnit.SECONDS.between(start, stop);
+        long hours = seconds / 3600; 
+        System.out.println("Antal timmar: " + "Antal minuter: " + seconds/60);
+        return null;
     }
 
 }

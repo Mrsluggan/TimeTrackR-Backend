@@ -42,13 +42,11 @@ public class TaskMapping {
 
     @GetMapping("tasks/start/{id}")
     public Tasks startTask(@PathVariable("id") String id) {
-        System.out.println("uppgift startad " + id);
         return taskService.startTask(id);
     }
 
     @GetMapping("tasks/stop/{id}")
     public Tasks stopTask(@PathVariable("id") String id) {
-        System.out.println("uppgift avslutad ");
         return taskService.stopTask(id);
     }
 }
