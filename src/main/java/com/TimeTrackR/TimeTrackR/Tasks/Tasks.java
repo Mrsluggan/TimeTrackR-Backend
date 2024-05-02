@@ -1,5 +1,6 @@
 package com.TimeTrackR.TimeTrackR.Tasks;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
@@ -13,11 +14,11 @@ public class Tasks {
     // Task variables
     private String taskName;
     private Boolean isActive;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private long totalTime;
 
-    public Tasks(String id, String taskName, Boolean isActive, Date startDate, Date endDate, long totalTime) {
+    public Tasks(String id, String taskName, Boolean isActive, LocalDateTime startDate, LocalDateTime endDate, long totalTime) {
         this.id = id;
         this.taskName = taskName;
         this.isActive = isActive;
@@ -46,16 +47,16 @@ public class Tasks {
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
     public long getTotalTime() {

@@ -1,5 +1,6 @@
 package com.TimeTrackR.TimeTrackR.Users;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Users")
@@ -11,14 +12,12 @@ public class Users {
     private String name;
     private String password;
 
-
-    
-
     public Users(String id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
     }
+    
     public String getId() {
         return id;
     }
