@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class TaskService {
 
-
     private final MongoOperations mongoOperations;
 
     public TaskService(MongoOperations mongoOperations) {
@@ -47,13 +46,14 @@ public class TaskService {
     }
 
     public Tasks stopTask(String id) {
+
         Tasks task = getTaskById(id);
         LocalDateTime now = LocalDateTime.now();
 
         task.setIsActive(false);
         task.setEndDate(now);
-        System.out.println(task.getStartDate() + " " + task.getEndDate());
-        countHours(task.getStartDate(), task.getEndDate());
+        task.setTotalTime(task.getTotalTime() + countHours(task.getStartDate(), task.getEndDate()));
+
         return mongoOperations.save(task);
     }
 
@@ -62,12 +62,13 @@ public class TaskService {
         return tasks;
     }
 
-    public LocalDateTime countHours(LocalDateTime start, LocalDateTime stop) {
+    public Long countHours(LocalDateTime start, LocalDateTime stop) {
 
         long seconds = ChronoUnit.SECONDS.between(start, stop);
-        long hours = seconds / 3600; 
-        System.out.println("Antal timmar: " + "Antal minuter: " + seconds/60);
-        return null;
+        long hours = seconds / 3600;
+
+        System.out.println("Antal timmar: " + hours + "  Antal minuter: " + seconds / 60);
+        return hours;
     }
 
 }
