@@ -31,6 +31,8 @@ public class TaskService {
     }
 
     public Tasks removeTask(String id) {
+        Tasks task = getTaskById(id);
+        mongoOperations.remove(task);
         return null;
     }
 

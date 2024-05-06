@@ -38,9 +38,9 @@ public class TaskMapping {
         return taskService.addTask(tasks);
     }
 
-    @DeleteMapping("tasks/remove")
-    public void removeTask(String id) {
-
+    @DeleteMapping("tasks/remove/{id}")
+    public void removeTaskById(@PathVariable("id") String id) {
+        taskService.removeTask(id);
     }
 
     @PostMapping("tasks/start/{id}")
