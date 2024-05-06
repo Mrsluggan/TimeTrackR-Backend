@@ -34,6 +34,7 @@ public class TaskMapping {
 
     @PostMapping("tasks/newtask")
     public Tasks newTask(@RequestBody Tasks tasks) {
+        tasks.setIsActive(false);
         return taskService.addTask(tasks);
     }
 
@@ -42,12 +43,12 @@ public class TaskMapping {
 
     }
 
-    @GetMapping("tasks/start/{id}")
+    @PostMapping("tasks/start/{id}")
     public Tasks startTask(@PathVariable("id") String id) {
         return taskService.startTask(id);
     }
 
-    @GetMapping("tasks/stop/{id}")
+    @PostMapping("tasks/stop/{id}")
     public Tasks stopTask(@PathVariable("id") String id) {
         return taskService.stopTask(id);
     }
