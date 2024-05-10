@@ -1,4 +1,4 @@
-package com.TimeTrackR.TimeTrackR.Users;
+package com.TimeTrackR.TimeTrackR.Model.Users;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

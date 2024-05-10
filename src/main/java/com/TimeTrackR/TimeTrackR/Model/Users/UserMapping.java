@@ -1,4 +1,4 @@
-package com.TimeTrackR.TimeTrackR.Users;
+package com.TimeTrackR.TimeTrackR.Model.Users;
 
 import java.util.List;
 

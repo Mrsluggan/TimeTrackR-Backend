@@ -1,4 +1,4 @@
-package com.TimeTrackR.TimeTrackR.Tasks;
+package com.TimeTrackR.TimeTrackR.Model.Tasks;
 
 import java.util.List;
 

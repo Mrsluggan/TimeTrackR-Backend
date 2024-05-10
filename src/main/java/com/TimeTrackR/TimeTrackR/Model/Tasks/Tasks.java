@@ -1,4 +1,4 @@
-package com.TimeTrackR.TimeTrackR.Tasks;
+package com.TimeTrackR.TimeTrackR.Model.Tasks;
 
 import java.time.LocalDateTime;
 import java.util.Date;
