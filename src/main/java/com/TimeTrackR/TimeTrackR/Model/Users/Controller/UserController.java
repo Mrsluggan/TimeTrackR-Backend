@@ -9,10 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,27 +29,23 @@ public class UserController {
 
     private final TaskService taskService;
 
-    private UserService userService;
+    private final UserService userService;
 
     public UserController(UserService userService, TaskService taskService) {
         this.userService = userService;
         this.taskService = taskService;
     }
 
-    @GetMapping("task/getTasks")
-    public List<Tasks> getCurrentUser(Authentication authentication) {
-        String username = authentication.getName();
-
-        return userService.getUsersTaskByName(username);
-    }
-
     @GetMapping("/check")
     public ResponseEntity<?> CheckIfAuthenticated(Authentication authentication) {
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
+            Users user = userService.findByUsername(username).orElse(null);
+
             Map<String, Object> response = new HashMap<>();
             response.put("authenticated", true);
             response.put("username", username);
+            response.put("isAdmin", user.getIsAdmin());
             return ResponseEntity.ok(response);
         } else {
             Map<String, Object> response = new HashMap<>();
@@ -60,6 +54,7 @@ public class UserController {
         }
 
     }
+    // -------------------------------------------------- User
 
     @GetMapping("users")
     public List<Users> getAllUsers() {
@@ -71,6 +66,14 @@ public class UserController {
         String newPassword = bcryptEncoder.encode(users.getPassword());
         users.setPassword(newPassword);
         return userService.addUser(users);
+    }
+
+    // -------------------------------------------------- Tasks
+    @GetMapping("task/getTasks")
+    public List<Tasks> getCurrentUser(Authentication authentication) {
+        String username = authentication.getName();
+
+        return userService.getUsersTaskByName(username);
     }
 
     @PostMapping("task/add")
@@ -100,5 +103,7 @@ public class UserController {
 
         return userService.stopTask(id, username);
     }
+
+    // -------------------------------------------------- Admin
 
 }
