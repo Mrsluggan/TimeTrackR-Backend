@@ -6,6 +6,8 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.TimeTrackR.TimeTrackR.Model.Users.Model.Users;
+
 @Document(collection = "Tasks")
 public class Tasks {
 
@@ -18,17 +20,18 @@ public class Tasks {
     private LocalDateTime endDate;
     private long totalTime;
 
-    public Tasks(String id, String taskName, Boolean isActive, LocalDateTime startDate, LocalDateTime endDate, long totalTime) {
+    private String userId;
+
+    public Tasks(String id, String taskName, Boolean isActive, LocalDateTime startDate, LocalDateTime endDate,
+            long totalTime, String userId) {
         this.id = id;
         this.taskName = taskName;
         this.isActive = isActive;
         this.startDate = startDate;
         this.endDate = endDate;
         this.totalTime = totalTime;
+        this.userId = userId;
     }
-
-
-
     public String getId() {
         return id;
     }
@@ -64,6 +67,12 @@ public class Tasks {
     }
     public void setTotalTime(long totalTime) {
         this.totalTime = totalTime;
+    }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 
