@@ -38,6 +38,7 @@ public class UserController {
 
     @GetMapping("/check")
     public ResponseEntity<?> CheckIfAuthenticated(Authentication authentication) {
+        System.out.println(authentication);
         if (authentication != null && authentication.isAuthenticated()) {
             String username = authentication.getName();
             Users user = userService.findByUsername(username).orElse(null);
