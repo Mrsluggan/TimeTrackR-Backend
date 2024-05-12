@@ -26,7 +26,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((request) -> request
-                .requestMatchers("/TestUser").authenticated()
                 .anyRequest().permitAll())
 
                 .userDetailsService(jpsUserDetailService)
@@ -40,8 +39,7 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"));
 
-        // CORS configuration
-        http.cors(Customizer.withDefaults());
+
 
         return http.build();
     }
