@@ -1,9 +1,12 @@
-package com.TimeTrackR.TimeTrackR.Tasks;
+package com.TimeTrackR.TimeTrackR.Model.Tasks;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.TimeTrackR.TimeTrackR.Model.Users.Model.Users;
 
 @Document(collection = "Tasks")
 public class Tasks {
@@ -13,21 +16,22 @@ public class Tasks {
     // Task variables
     private String taskName;
     private Boolean isActive;
-    private Date startDate;
-    private Date endDate;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
     private long totalTime;
 
-    public Tasks(String id, String taskName, Boolean isActive, Date startDate, Date endDate, long totalTime) {
+    private String userId;
+
+    public Tasks(String id, String taskName, Boolean isActive, LocalDateTime startDate, LocalDateTime endDate,
+            long totalTime, String userId) {
         this.id = id;
         this.taskName = taskName;
         this.isActive = isActive;
         this.startDate = startDate;
         this.endDate = endDate;
         this.totalTime = totalTime;
+        this.userId = userId;
     }
-
-
-
     public String getId() {
         return id;
     }
@@ -46,16 +50,16 @@ public class Tasks {
     public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
     public long getTotalTime() {
@@ -63,6 +67,12 @@ public class Tasks {
     }
     public void setTotalTime(long totalTime) {
         this.totalTime = totalTime;
+    }
+    public String getUserId() {
+        return userId;
+    }
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
 
