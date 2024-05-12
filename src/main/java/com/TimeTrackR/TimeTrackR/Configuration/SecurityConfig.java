@@ -32,11 +32,11 @@ public class SecurityConfig {
                 .userDetailsService(jpsUserDetailService)
 
                 .formLogin(formLogin -> formLogin
-                        .defaultSuccessUrl("http://localhost:5173/") // Redirect to this address after login
+                        .defaultSuccessUrl("/") // Redirect to this address after login
                         .permitAll()) // Allow everyone to access the login page
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("http://localhost:5173/")
+                        .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"));
 
