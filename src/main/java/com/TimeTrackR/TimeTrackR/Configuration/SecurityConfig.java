@@ -31,10 +31,10 @@ public class SecurityConfig {
                 .userDetailsService(jpsUserDetailService)
 
                 .formLogin(formLogin -> formLogin
-                        .defaultSuccessUrl("https://lobster-app-2ifzk.ondigitalocean.app/") // Redirect to this address after login
+                        .defaultSuccessUrl("http://localhost:5173/") // Redirect to this address after login
                         .permitAll()) // Allow everyone to access the login page
                 .logout(logout -> logout
-                        .logoutUrl("https://lobster-app-2ifzk.ondigitalocean.app/")
+                        .logoutUrl("http://localhost:5173/")
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
                         .deleteCookies("JSESSIONID"));
