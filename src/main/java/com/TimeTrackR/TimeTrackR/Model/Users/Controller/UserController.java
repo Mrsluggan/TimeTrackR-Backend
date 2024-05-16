@@ -23,7 +23,7 @@ import com.TimeTrackR.TimeTrackR.Model.Users.Model.Users;
 import com.TimeTrackR.TimeTrackR.Model.Users.Service.UserService;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://lobster-app-2ifzk.ondigitalocean.app/", allowCredentials = "true")
 public class UserController {
 
     @Autowired
