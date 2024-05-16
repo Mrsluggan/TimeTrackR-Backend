@@ -18,10 +18,4 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowCredentials(true); // Tillåt att cookies skickas med anropet
     }
 
-    public class MySameSiteConfiguration {
-        @Bean
-        public CookieSameSiteSupplier applicationCookieSameSiteSupplier() {
-            return CookieSameSiteSupplier.ofStrict();
-        }
-    }
 }
