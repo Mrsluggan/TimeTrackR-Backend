@@ -12,6 +12,7 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("https://lobster-app-2ifzk.ondigitalocean.app/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowCredentials(true);
+                .exposedHeaders("Set-Cookie") // Specificera vilka headers som ska exponeras till klienten
+                .allowCredentials(true); // Tillåt att cookies skickas med anropet
     }
 }
