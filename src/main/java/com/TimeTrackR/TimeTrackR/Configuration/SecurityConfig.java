@@ -36,10 +36,11 @@ public class SecurityConfig {
                         .permitAll()) // Allow everyone to access the login page
                 .logout(logout -> logout
                         .logoutUrl("https://walrus-app-fc7zi.ondigitalocean.app/logout")
+                        
                         .logoutSuccessUrl("https://lobster-app-2ifzk.ondigitalocean.app")
                         .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID"));
-
+                        .deleteCookies("JSESSIONID")
+                        .permitAll());
 
 
         return http.build();
