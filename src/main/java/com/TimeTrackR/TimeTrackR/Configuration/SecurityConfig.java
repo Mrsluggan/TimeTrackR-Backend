@@ -28,20 +28,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable()).authorizeHttpRequests((request) -> request
                 .anyRequest().permitAll())
 
-                .userDetailsService(jpsUserDetailService)
-
-                .formLogin(formLogin -> formLogin
-                        .defaultSuccessUrl("https://lobster-app-2ifzk.ondigitalocean.app/") // Redirect to this address
-                                                                                            // after login
-
-                        .permitAll()) // Allow everyone to access the login page
-                .logout(logout -> logout
-                        .logoutUrl("https://walrus-app-fc7zi.ondigitalocean.app/logout")
-
-                        .logoutSuccessUrl("https://lobster-app-2ifzk.ondigitalocean.app/")
-                        .invalidateHttpSession(true)
-                        .deleteCookies("JSESSIONID")
-                        .permitAll());
+                .userDetailsService(jpsUserDetailService);
 
         return http.build();
     }
